@@ -8,6 +8,7 @@
 --  	- field 'fdb' = Reference to the fortedb
 --  	- field forte = name of the forte
 --  	- field feebs = { Feebles }
+--  	- field attrs = List of attrs
 
 -- Feeble Format
 -- A table
@@ -71,7 +72,19 @@ function fortedb_filter_add(db, name, fn)
 	return true
 end
 
--- FIXME: Make this and the fortedb_value_Get the smae funciton and just to do the type chekc ot
+function forte_attr_get(forte, name)
+	return forte.attr[name]
+end
+
+function forte_attr_set(forte, name, value)
+	if type(value) == "nil" then
+		value = true
+	end
+	forte.attr[name] = value
+	return forte
+end
+
+-- FIXME: Make this and the fortedb_value_Get the smae funciton and just to do the type check
 -- make it all work
 function forte_value_get(forte)
 	return fortedb_forte_value_get(forte.fdb, forte.forte)
@@ -89,11 +102,14 @@ function fortedb_forte_add(db, name)
 		fdb = db,
 		forte = name,
 		feebs = {},
+		attr = {},
 		value_add = forte_value_add,
 		ref_add = forte_reference_add,
 		ref_filter_add = forte_reference_filter_add,
 		value = forte_value_get,
 		value_get = forte_value_get,
+		attr_get = forte_attr_get,
+		attr_set = forte_attr_set,
 	}
 	return db[name]
 end

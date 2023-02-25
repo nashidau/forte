@@ -1,5 +1,4 @@
 # Forte; A RPG character system
-# Fortes and Feebles
 
 The basic idea of stats are fortes.  Each forte is made up of a number of feebles (feebs).  The
 value of a forte is (usually) found by summing the various feebles that make it up.  A feeble can be
@@ -7,6 +6,13 @@ a value, or it can refer to another Forte.  Reference feebles can also have a tr
 get the value.
 
 Each Feeb should have a short description or tag indicating where it came from.
+
+## Forte
+
+Each forte has a list of feebs.
+
+Additionally there are attrs (short for attributes).  Attrs may optionally have a value (an attr
+with no value is the same as an attr with the value 'true').
 
 ## D20 Examples
 

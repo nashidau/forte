@@ -70,6 +70,24 @@ function test.filterfn()
 	return true
 end
 
+function test.attr()
+	local fdb = assert(fortedb_create());
+
+	-- Add a forte, called 'Test'.
+	local forte = assert(fdb:add("Test"))
+	assert(forte:attr_set("Bool", true));
+	assert(forte:attr_set("Bool2"))
+	assert(forte:attr_set("Rank", 7))
+
+	-- Check them
+	assert(forte:attr_get("Bool"))
+	assert(forte:attr_get("Bool2"))
+	assert(forte:attr_get("Rank") == 7)
+
+	return true
+end
+
+
 local function main()
 	print("== Forte Tests")
 	for k, v in pairs(test) do
